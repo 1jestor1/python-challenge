@@ -4,7 +4,7 @@ import csv
 #File Path for budget_data.csv
 budgetpath = os.path.join('Resources','budget_data.csv')
 #File path for the summary output titled budget_analysis as text file.
-#outputpath = os.path.join('Output','budget_analysis.txt')
+outputpath = os.path.join('Output','budget_analysis.txt')
 #Month Count start
 mnthcount = 0
 #Net total sum storer
@@ -44,10 +44,8 @@ with open(budgetpath) as csvfile:
     avrgdelta = (prftf - prft0) / (mnthcount - 1)
 #Stores summary message in the required format using the data from the budget_data.csv.
 summary = f"Financial Analysis\n----------------------------\nTotal Months: {mnthcount}\nTotal: ${nettotal}\nAverage Change: ${round(avrgdelta,2)}\nGreatest Increase in Profits: {grtstgain[0]} (${grtstgain[1]})\nGreatest Decrease in Profits: {grtstlss[0]} (${grtstlss[1]})"
-#print(mnthcount)
-#print(nettotal)
-#print(grtstgain)
-#print(grtstlss)
-#print(avrgdelta)
-#Prints summary message.
+#Prints summary to terminal.
 print(summary)
+#Write out to budget_analysis.txt.
+with open(outputpath, "w") as smmryfile:
+    smmryfile.write(summary)
